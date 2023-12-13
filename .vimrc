@@ -6,7 +6,7 @@
     " Disable compatibility with vi which can cause unexpected issues.
     set nocompatible
 
-    filetype off                  " required
+    filetype off                  " required by Vundle
 
     " set the runtime path to include Vundle and initialize
     set rtp+=~/.vim/bundle/Vundle.vim
@@ -26,7 +26,6 @@
         Plugin 'pixelneo/vim-python-docstring'
 
         Plugin 'jimf/vim-pep8-text-width'
-        Plugin 'ycm-core/YouCompleteMe'
         Plugin 'mikecoder/quickrun.vim'
 
         " File tree
@@ -42,7 +41,10 @@
         "   " Error detected while processing BufWipeout Autocommands for "*":
         "   " E117: Unknown function: SemshiBufWipeout
         Plugin 'davidhalter/jedi'
-        Plugin 'neoclide/coc.nvim'
+        " Plugin 'neoclide/coc.nvim'
+
+        " GitHub Copilot
+        Plugin 'github/copilot.vim'
 
         " jupyter
         Plugin 'jupyter-vim/jupyter-vim'
@@ -54,10 +56,27 @@
         Plugin 'dense-analysis/ale'
 
         " Snippets
+        Bundle 'ervandew/supertab'
+        Plugin 'ycm-core/YouCompleteMe'
         " Track the engine.
         Plugin 'SirVer/ultisnips'
         " Snippets are separated from the engine. Add this if you want them:
         Plugin 'honza/vim-snippets'
+
+        " make YCM compatible with UltiSnips (using supertab)
+        " let g:ycm_key_list_select_completion = ['<C-n>', '<Down>']
+        " let g:ycm_key_list_previous_completion = ['<C-p>', '<Up>']
+        let g:ycm_key_list_select_completion = ['<C-j>']
+        let g:ycm_key_list_previous_completion = ['<C-k>']
+        let g:SuperTabDefaultCompletionType = '<C-j>'
+
+        " better key bindings for UltiSnipsExpandTrigger
+        let g:UltiSnipsExpandTrigger = "<C-l>"
+        let g:UltiSnipsJumpForwardTrigger = "<C-j>"
+        let g:UltiSnipsJumpBackwardTrigger = "<C-k>"
+
+        " If you want :UltiSnipsEdit to split your window.
+        let g:UltiSnipsEditSplit="vertical"
 
         " LaTeX
         Plugin 'lervag/vimtex'
@@ -80,7 +99,9 @@
         Plugin 'dhruvasagar/vim-open-url'
 
         " GhostText
-        Plugin 'raghur/vim-ghost'
+        " Plugin 'roxma/nvim-yarp', v:version >= 800 && !has('nvim') ? {} : { 'on': [], 'for': [] }
+        " Plugin 'roxma/vim-hug-neovim-rpc', v:version >= 800 && !has('nvim') ? {} : { 'on': [], 'for': [] }
+        " Plugin 'raghur/vim-ghost'
 
         " All of your Plugins must be added before the following line
     call vundle#end()            " required
@@ -214,10 +235,28 @@
 " PLUGINS ---------------------------------------------------------------- {{{
 
     " Plugin code goes here.
+
+    " vimtex Zathura
     let g:vimtex_view_general_viewer = 'zathura'
     " let g:vimtex_view_general_viewer = 'open -a TeXshop'
     let g:vimtex_view_method = 'zathura'
 
+    "UltiSnips
+    " let g:UltiSnipsSnippetsDir = $HOME.'/.vim/bundle/ultisnips'
+
+    " Ghost
+    function! s:SetupGhostBuffer()
+        if match(expand("%:a"), '\v/ghost-(github|reddit)\.com-')
+            set ft=markdown
+        elseif match(expand("%:a"), '\v/ghost-overleaf\.com-')
+            set ft=tex
+        endif
+    endfunction
+
+    augroup vim-ghost
+        au!
+        au User vim-ghost#connected call s:SetupGhostBuffer()
+    augroup END
     " LuaLaTex
     " Can't get this to work yet :D
     " let g:vimtex_compiler_engine = 'lualatex'
@@ -334,17 +373,6 @@
 
     " File tree
     command Tree NERDTree
-
-    " Snippets
-    " Trigger configuration. You need to change this to something other than <tab> if you use one of the following:
-    " - https://github.com/Valloric/YouCompleteMe
-    " - https://github.com/nvim-lua/completion-nvim
-    let g:UltiSnipsExpandTrigger="<c-j>"
-    let g:UltiSnipsJumpForwardTrigger="<c-b>"
-    let g:UltiSnipsJumpBackwardTrigger="<c-z>"
-
-    " If you want :UltiSnipsEdit to split your window.
-    let g:UltiSnipsEditSplit="vertical"
 
     " Markdown
     " Preview mapped to control-m
