@@ -1,0 +1,8 @@
+# /Users/sam/.config/tmuxinator/ewoc_notes.yml
+
+name: ewoc_notes
+root: /Users/sam/Dropbox (MIT)/Notes/EWOCs
+
+windows:
+  - latex_continuous: vim notes.tex "+:VimtexCompile"
+  - editor: vim includes/introduction.tex includes/resummation/starting_point.tex includes/appendices/splitting_functions.tex includes/appendices/shower_resummation.tex includes/appendices/curiosities.tex

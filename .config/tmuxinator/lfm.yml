@@ -1,0 +1,19 @@
+# /Users/sam/.config/tmuxinator/lfm.yml
+
+name: lfm
+root: /Users/sam/Documents/Software/LibrarianFileManager/src/librarian/
+
+windows:
+  - main:
+  - actors: cd actors/
+  - plotters: cd plotters/
+  - gui: cd gui/
+  - mg5: cd /Users/sam/Documents/Software/MG5_aMC_v3_5_0/bin/; vim mg5_aMC
+  - tests:
+      layout: 4598,167x41,0,0{83x41,0,0,142,83x41,84,0[83x20,84,0,144,83x20,84,21,146]}
+      panes:
+        - cd ../../tests
+        - cd ../../tests && vim Makefile test_librarian/Makefile test_librarian_gui/Makefile
+        - cd ../../tests
+  - root: cd ../..
+  - README: cd ../.. && vim README.md

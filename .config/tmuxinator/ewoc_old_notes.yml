@@ -1,0 +1,8 @@
+# /Users/sam/.config/tmuxinator/ewoc_old_notes.yml
+
+name: ewoc_old_notes
+root: /Users/sam/Documents/Research/EWOC_Resources
+
+windows:
+  - LO: vim ewoc_notes_lo/ewoc_notes.tex "+:VimtexCompile"
+  - plus_fns: vim plus_fns/plus_fn_examples.tex "+:VimtexCompile"

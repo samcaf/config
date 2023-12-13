@@ -1,0 +1,8 @@
+# /Users/sam/.config/tmuxinator/ewoc_paper.yml
+
+name: ewoc_paper
+root: /Users/sam/Dropbox (MIT)/EWOCs
+
+windows:
+  - latex_continuous: vim ewoc_paper.tex "+:VimtexCompile"
+  - bibliography: vim ewoc_bib.bib

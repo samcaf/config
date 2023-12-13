@@ -1,0 +1,12 @@
+# /Users/sam/.config/tmuxinator/thesis.yml
+
+name: thesis
+root: /Users/sam/Dropbox (MIT)/Thesis
+
+startup_window: body
+
+windows:
+  - latex_continuous: vim thesis.tex "+:VimtexCompile"
+  - frontmatter: vim includes/frontmatter/* chapters/qcd.tex
+  - body: vim chapters/particles.tex chapters/jets.tex chapters/substructure.tex chapters/event_shapes.tex
+  - backmatter: vim chapters/conclusion.tex chapters/appendices.tex chapters/bonus_problems.tex chapters/solutions.tex thesis_bib.bib includes/glossary.tex
