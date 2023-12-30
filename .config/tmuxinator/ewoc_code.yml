@@ -9,7 +9,7 @@ windows:
   - project:
       layout: 865a,167x41,0,0{83x41,0,0,129,83x41,84,0,130}
       panes:
-        - # open output && open mathematica
+        - vim lfm_tools/project_presets.py # open output && open mathematica
         - vim lfm_tools/project_info.py
   # - plot_tools: cd lfm_tools
   - utils: cd lfm_tools/utils && vim ewoc_utils.py ewoc_plot_utils.py pair_observables.py plot_utils.py
