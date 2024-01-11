@@ -1,7 +1,7 @@
 # /Users/sam/.config/tmuxinator/lfm.yml
 
 name: lfm
-root: /Users/sam/Documents/Software/LibrarianFileManager/src/librarian/
+root: ~/Documents/Software/LibrarianFileManager/src/librarian/
 
 windows:
   - main:

@@ -1,7 +1,7 @@
 # /Users/sam/.config/tmuxinator/thesis.yml
 
 name: thesis
-root: /Users/sam/Dropbox (MIT)/Thesis
+root: ~/Dropbox (MIT)/Thesis
 
 startup_window: body
 

@@ -1,7 +1,7 @@
 # /Users/sam/.config/tmuxinator/planner.yml
 
 name: planner
-root: /Users/sam/Dropbox (MIT)/Logs/Physics_Diary
+root: ~/Dropbox (MIT)/Logs/Physics_Diary
 
 startup_window: today
 
