@@ -1,9 +1,9 @@
-# /Users/sam/.config/tmuxinator/ewoc_code.yml
+# ~/.config/tmuxinator/ewoc_code.yml
 
 name: ewoc_code
-root: /Users/sam/Documents/Research/LFM_EWOCs/
+root: ~/Documents/Research/EWOCs/
 
-pre_window: source /Users/sam/Documents/Research/LFM_EWOCs/lfm_tools/venv/bin/activate.fish
+pre_window: source ~/Documents/Research/EWOCs/lfm_tools/venv/bin/activate.fish
 
 windows:
   - project:
@@ -11,13 +11,20 @@ windows:
       panes:
         - vim lfm_tools/project_presets.py # open output && open mathematica
         - vim lfm_tools/project_info.py
+  - run and debug:
+      layout: 865a,167x41,0,0{83x41,0,0,129,83x41,84,0,130}
+      panes:
+        -
+        -
   # - plot_tools: cd lfm_tools
-  - utils: cd lfm_tools/utils && vim ewoc_utils.py ewoc_plot_utils.py pair_observables.py plot_utils.py
+  # - utils: cd lfm_tools/utils && vim ewoc_utils.py ewoc_plot_utils.py pair_observables.py plot_utils.py
   - lfm_classes:
       layout: 865a,167x41,0,0{83x41,0,0,129,83x41,84,0,130}
       panes:
-        - cd lfm_tools/lfm_classes && vim ewoc_writer.py
-        - cd lfm_tools/lfm_classes && vim ewoc_plotter.py
+        - cd lfm_tools/lfm_classes && vim update_params.py
+        -
+        # - cd lfm_tools/lfm_classes && vim ewoc_writer.py
+        # - cd lfm_tools/lfm_classes && vim ewoc_plotter.py
   # - analytics: cd lfm_tools/qcd_utils/ && vim ewoc_utils.py dglap_moments.py qcd_basics.py
   # - README: vim README.md
   # - write_tools: cd write_tools
