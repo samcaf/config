@@ -1,0 +1,55 @@
+# /etc/fstab: static file system information.
+#
+# Use 'blkid' to print the universally unique identifier for a
+# device; this may be used with UUID= as a more robust way to name devices
+# that works even if disks are added and removed. See fstab(5).
+#
+# <file system>  <mount point>  <type>  <options>  <dump>  <pass>
+PARTUUID=43306bef-1532-4834-bbd8-0cd2af92574f  /boot/efi  vfat  umask=0077  0  0
+PARTUUID=c50897f9-6e3a-4289-91a2-c2b53e89bfc9  /recovery  vfat  umask=0077  0  0
+/dev/mapper/cryptswap  none  swap  defaults  0  0
+UUID=854ae307-d9d9-425f-b7b9-10aa4a1a8b7a  /  ext4  noatime,errors=remount-ro  0  1
+#
+#
+# ===========================================================================
+# External Drives
+# ===========================================================================
+# List:
+#   * Personal Drive
+#   * Digital Library
+#   * use `mount | grep "/dev/"` to see mounted devices with options
+#
+# Notes:
+#   * See /etc/fstab.bak for backup with no external drives
+#   * Using UUID for a more robust lookup
+#       - View UUIDs with `ls -lha /dev/disk/by-uuid`
+#   * Options
+# 	- /media/DIR must be created with sudo
+#       - nofail allows the computer to boot in the absence of the drive
+#	- force forces the rw option (helpful for hfs+)
+#   * For HFS+:
+#       If the external drive is still not loading as rw, I found the following post helpful:
+#       https://superuser.com/a/365270
+#       Basically:
+#         - let MOUNT_POINT be the physical mount point, e.g. sda1 or sdb1
+#         - Then the following has worked for me:
+#         ```
+#           sudo fsck.hfsplus /dev/MOUNT_POINT
+#           sudo umount /dev/MOUNT_POINT
+#           sudo mount /dev/MOUNT_POINT
+#         ```
+# 
+# -----------------------------------------------------------------------
+# Personal Drive
+# -----------------------------------------------------------------------
+#   * HFS+
+#       - Forcing rw, using nofail
+#   * UUID=bded6d91-b7f6-394a-a486-8146b84aac8b
+UUID=bded6d91-b7f6-394a-a486-8146b84aac8b /media/Personal_Drive hfsplus nofail,force,rw,uid=1000,gid=1000,umask=003  0  0
+# -----------------------------------------------------------------------
+# Digital Library 
+# -----------------------------------------------------------------------
+#   * HFS+
+#       - Forcing rw, using nofail
+#   * UUID=bded6d91-b7f6-394a-a486-8146b84aac8b
+UUID=37ec1775-2cb7-34c1-b8f3-6ce5242ec041 /media/Digital_Library hfsplus nofail,force,rw,uid=1000,gid=1000,umask=003  0  0

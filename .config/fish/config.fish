@@ -12,8 +12,13 @@ export DBUS_SESSION_BUS_ADDRESS="unix:path=$DBUS_LAUNCHD_SESSION_BUS_SOCKET"
 alias cpg="cpg -g"
 alias mvg="mvg -g"
 
+alias cpr="time rsync -rah --info=progress2 --stats"
+
 # Git for dot files
-alias config='/usr/bin/git --git-dir=/Users/sam/.cfg/ --work-tree=/Users/sam'
+alias config='/usr/bin/git --git-dir=/home/samaf/.cfg/ --work-tree=/home/samaf'
+
+# dconf dbus for linux
+set DBUS_SESSION_BUS_ADDRESS 'unix:path=/run/user/1000/bus'
 
 
 # ------------------------
@@ -31,53 +36,63 @@ alias config='/usr/bin/git --git-dir=/Users/sam/.cfg/ --work-tree=/Users/sam'
 # - - - - - - - - - - - -
 # My research directories ==> PATH
 # - - - - - - - - - - - -
-fish_add_path --path /Users/sam/Documents/Research/EWOCs
-fish_add_path --path /Users/sam/Documents/Research/JetMonteCarlo
-fish_add_path --path /Users/sam/Documents/Research/Thermalization
-fish_add_path --path /Users/sam/Documents/Research/Ising
+fish_add_path --path /home/samaf/Documents/Research/EWOCs
 
 # - - - - - - - - - - - -
 # My research directories ==> PYTHONPATH
 # - - - - - - - - - - - -
 # Setting PYTHONPATH using the research directories in the PATH
-set PYTHONPATH "/Users/sam/Documents/Research/JetMonteCarlo:$PYTHONPATH"
-set PYTHONPATH "/Users/sam/Documents/Research/EWOCs:$PYTHONPATH"
+set PYTHONPATH "/home/samaf/Documents/Research/EWOCs:$PYTHONPATH"
 # set PYTHONPATH "[XXX]:$PYTHONPATH"
 export PYTHONPATH
 
 # - - - - - - - - - - - -
 # Pythia directories ==> PATH
 # - - - - - - - - - - - -
-fish_add_path --path /Users/sam/Documents/Software/pythia8307
-fish_add_path --path /Users/sam/Documents/Software/pythia8307/bin
+fish_add_path --path /home/samaf/Software/pythia8310
+fish_add_path --path /home/samaf/Software/pythia8310/bin
 # Python path: See the 2022 Pythia manual
 # https://pythia.org/download/pdf/pythia8300.pdf#page=257
 # Not working for me now but maybe someday
-fish_add_path --path /Users/sam/Documents/Software/pythia8307/lib
+fish_add_path --path /home/samaf/Software/pythia8310/lib
 
 # - - - - - - - - - - - -
 # MacPorts Path ==> PATH
 # - - - - - - - - - - - -
-set PATH "/opt/local/bin:/opt/local/sbin:$PATH"
+fish_add_path /opt/local/bin:/opt/local/sbin
 
 
 # ------------------------
-# Pythia Paths
+# Jet Physics Paths
 # ------------------------
-# Modifying path variables for usage of Pythia
-set PYTHIA8PATH "/Users/sam/Documents/Software/pythia8307"
+# Pythia:
+set PYTHIA8PATH "/home/samaf/Software/pythia8310"
 set PYTHIA8DATA "$PYTHIA8PATH/share/Pythia8/xmldoc"
+
+# Modifying path variables for usage of Pythia
 set LD_LIBRARY_PATH "$PYTHIA8PATH/lib:$LD_LIBRARY_PATH"
 set DYLD_LIBRARY_PATH "$PYTHIA8PATH/lib:$DYLD_LIBRARY_PATH"
 set C_INCLUDE_PATH "$PYTHIA8PATH/include:$C_INCLUDE_PATH"
 set CPLUS_INCLUDE_PATH "$PYTHIA8PATH/include:$CPLUS_INCLUDE_PATH"
+
+# FastJet
+set FASTJET_DIR "/home/samaf/Software/fastjet-3.4.2"
+
+# Modifying path variables for usage of FastJet
+set LD_LIBRARY_PATH "$FASTJET_DIR/src/.libs:$LD_LIBRARY_PATH"
+set DYLD_LIBRARY_PATH "$FASTJET_DIR/src/.libs:$DYLD_LIBRARY_PATH"
+set C_INCLUDE_PATH "$FASTJET_DIR/include:$C_INCLUDE_PATH"
+set CPLUS_INCLUDE_PATH "$FASTJET_DIR/include:$CPLUS_INCLUDE_PATH"
+
+# Setting the library path to be the same as the LD_LIBRARY_PATH
+set LIBRARY_PATH "$LD_LIBRARY_PATH"
 
 
 # ------------------------
 # Other Paths
 # ------------------------
 # MadGraph5
-set MG5Path "/Users/sam/Documents/Software/MG5_aMC_v3_5_0"
+# set MG5Path "/home/samaf/Software/MG5_aMC_v3_5_0"
 export MG5Path
 
 
@@ -100,6 +115,8 @@ alias texstuff_samaf="vim ~/Library/texmf/tex/latex/samaf.sty"
 alias texsty="vim ~/Library/texmf/tex/latex/samaf.sty"
 alias samstuff="chrome https://docs.google.com/spreadsheets/d/1OXVp6Cn3BJ9WMQ01AAKi6byxzFFxCIqOEvUPjbbtyNQ/edit#gid=0"
 alias rocketbook="chrome https://www.dropbox.com/work/RocketBook"
+
+fish_add_path /usr/local/texlive/2023/bin/x86_64-linux
 
 # Short command to compile latex document with all comments added to the front of the file,
 # if the latex functions required to do so exist in the current directory
@@ -133,11 +150,11 @@ set OPENAI_API_KEY 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
 # Journals
 # ++++++++++++++++++
 # Physics
-alias journal="cd /Users/sam/Dropbox\ \(MIT\)/Logs/Physics_Diary"
+alias journal="cd /home/samaf/Dropbox\ \(MIT\)/Logs/Physics_Diary"
 
 alias journal_today="journal; ./make_entry.sh"
 
-alias journal_main="cd /Users/sam/Dropbox (MIT)/Logs/Physics_Diary; vim main.tex"
+alias journal_main="cd /home/samaf/Dropbox (MIT)/Logs/Physics_Diary; vim main.tex"
 alias open_journal="journal_main"
 
 alias journal_setup="journal; ./make_entry.sh -d +1"
@@ -151,7 +168,7 @@ alias grepv="grep -r --exclude-dir venv"
 # ++++++++++++++++++
 # Thesis
 # ++++++++++++++++++
-alias thesis="cd /Users/sam/Dropbox\ \(MIT\)/Thesis; vim thesis.tex"
+alias thesis="cd /home/samaf/Dropbox\ \(MIT\)/Thesis; vim thesis.tex"
 
 # ++++++++++++++++++
 # General
@@ -161,12 +178,12 @@ alias mg5="cd $MG5Path; ./bin/mg5_aMC"
 # ++++++++++++++++++
 # Dressed Observables for Bound States in Gauge Theories
 # ++++++++++++++++++
-alias dressed_overleaf="cd /Users/sam/Dropbox\ \(MIT\)/DressedOperators/64832e5e0fe61ede36473a50/Paper_Template"
+alias dressed_overleaf="cd /home/samaf/Dropbox\ \(MIT\)/DressedOperators/64832e5e0fe61ede36473a50/Paper_Template"
 
 # ++++++++++++++++++
 # EWOCs
 # ++++++++++++++++++
-alias ewoc_code="cd /Users/sam/Documents/Research/LFM_EWOCs"
+alias ewoc_code="cd /home/samaf/Documents/Research/LFM_EWOCs"
 
 # ++++++++++++++++++
 # Muon Beam Dump
@@ -242,7 +259,7 @@ alias dropbox_thesis_dir="cd ~/Dropbox\ \(MIT\)/Thesis"
 alias db_thesis="dropbox_thesis_dir"
 alias th="dropbox_thesis_dir"
 
-alias dropbox_EWOC_dir="cd /Users/sam/Dropbox\ \(MIT\)/EWOCs"
+alias dropbox_EWOC_dir="cd /home/samaf/Dropbox\ \(MIT\)/EWOCs"
 alias db_EWOC="dropbox_EWOC_dir"
 alias ewoc="dropbox_EWOC_dir"
 
@@ -250,14 +267,12 @@ alias ewoc="dropbox_EWOC_dir"
 # ------------------------
 # Misc
 # ------------------------
+alias darken="xrandr --output eDP --brightness 0.5"
+
 alias chrome="open -a 'Google Chrome'"
 
-alias happy="bash \"read -sp 'Password: ' pwd; [[ '$pwd' == '<3' ]] && open ~/Library/Misc\""
-
-alias mvhappy="mv ~/Documents/temp/* ~/Library/Misc/pics/"
-alias summertime_saga="open /Users/sam/Library/Misc/games/SummertimeSaga-0-20-16-mac"
-
-export PATH="$HOME/.yarn/bin:$HOME/.config/yarn/global/node_modules/.bin:$PATH"
+fish_add_path $HOME/.yarn/bin
+fish_add_path $HOME/.config/yarn/global/node_modules/.bin
 
 
 # ============================
@@ -280,5 +295,6 @@ if status is-interactive
 end
 
 # Setting PATH for Python 3.11
-# The original version is saved in /Users/sam/.config/fish/config.fish.pysave
+# The original version is saved in /home/samaf/.config/fish/config.fish.pysave
 set -x PATH "/Library/Frameworks/Python.framework/Versions/3.11/bin" "$PATH"
+fish_add_path /Library/Frameworks/Python.framework/Versions/3.11/bin
