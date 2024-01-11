@@ -105,6 +105,7 @@
 
         " All of your Plugins must be added before the following line
     call vundle#end()            " required
+" }}}
 
 " Basic Settings ---------------------------------------------------------------- {{{
 
@@ -197,7 +198,10 @@
     set visualbell
 
     " Directory to store .swp files
-    set dir=~/.cache/vim
+    if empty(glob('~/.vim/tmp'))
+            silent !mkdir -p ~/.vim/tmp
+        endif
+    set directory=~/.vim/tmp
 
     " Show matching parentheses
     set showmatch
@@ -230,6 +234,17 @@
     nnoremap <leader>d "_d
     xnoremap <leader>d "_d
     xnoremap <leader>p "_dP
+
+    " Setting title to be current document
+    autocmd BufEnter * let &titlestring = ' ' . expand("%:t")
+    set title
+
+    " Setting titles to be current document name in tmux
+    if exists('$TMUX')
+        autocmd BufReadPost,FileReadPost,BufNewFile * call system("tmux rename-window " . expand("%:t"))
+        let tmuxtitle = system("tmux display-message -p '#W'")
+        autocmd VimLeave * call system("tmux rename-window " . shellescape(tmuxtitle))
+    endif
 " }}}
 
 " PLUGINS ---------------------------------------------------------------- {{{
@@ -382,7 +397,7 @@
     " Opening with Google Chrome (currently broken -- see github)
     let vim_markdown_preview_browser='Google Chrome'
 
-  " Open a vertical split on the right for python
+    " Open a vertical split on the right for python
     command Vertpy vertical botright term ipython
 
     " Run the current script
@@ -398,6 +413,7 @@
 
     " Movement that I may eventually want to remap:
     " https://stackoverflow.cofunction Include(lib)
+
 " }}}
 
 
@@ -423,6 +439,7 @@
             exe 'source' custom_config_file
         endif
     endfunction
+
 " }}}
 
 
