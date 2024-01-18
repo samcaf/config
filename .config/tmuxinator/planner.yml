@@ -9,4 +9,4 @@ windows:
   - latex_continuous: vim main.tex "+:VimtexCompile"
   - today: ./make_entry.sh
   - tomorrow: ./make_entry.sh -d +1
-  - monday_goals: set MON (date -v -Mon "+%Y/%m/%d"); vim ./includes/entries/$MON.tex
+  # - monday_goals: set MON (date -dmonday +%Y/%m/%d); vim ./includes/entries/$MON.tex

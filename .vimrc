@@ -70,7 +70,7 @@
         let g:ycm_key_list_previous_completion = ['<C-k>']
         let g:SuperTabDefaultCompletionType = '<C-j>'
 
-        " better key bindings for UltiSnipsExpandTrigger
+        " better key bindings for UltiSnipsExpandTrigger: Control-<key>
         let g:UltiSnipsExpandTrigger = "<C-l>"
         let g:UltiSnipsJumpForwardTrigger = "<C-j>"
         let g:UltiSnipsJumpBackwardTrigger = "<C-k>"

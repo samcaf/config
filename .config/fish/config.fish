@@ -115,6 +115,7 @@ alias texstuff_samaf="vim ~/Library/texmf/tex/latex/samaf.sty"
 alias texsty="vim ~/Library/texmf/tex/latex/samaf.sty"
 alias samstuff="chrome https://docs.google.com/spreadsheets/d/1OXVp6Cn3BJ9WMQ01AAKi6byxzFFxCIqOEvUPjbbtyNQ/edit#gid=0"
 alias rocketbook="chrome https://www.dropbox.com/work/RocketBook"
+alias keymash="firefox https://keymash.io/"
 
 fish_add_path /usr/local/texlive/2023/bin/x86_64-linux
 
